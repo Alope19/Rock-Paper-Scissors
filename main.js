@@ -1,14 +1,6 @@
 
 let computerChoice = getComputerChoice()
 let playerChoice = prompt("Rock Paper or Scissors?").toLowerCase()
-console.log(playerChoice)
-console.log(computerChoice)
-console.log(playRound(playerChoice,computerChoice))
-
-
-
-
-
 
 
 
@@ -61,6 +53,30 @@ function playRound(playerSelection,computerSelection){
         else{
             return loseMessage
         }
+    }
+
+}
+function game(){
+    let playerScore = 0
+    let computerSCore = 0
+    for(let i = 0; i < 0; i++){
+        let result = playRound()
+
+        if (result == "You win! computer chose " + computerChoice){
+            console.log(result)
+            playerscore++
+        }
+        else{
+            console.log(result)
+            computerSCore++
+        }
+
+    }
+    if(playerScore > computerSCore){
+        console.log("You won the game congrats")
+    }
+    else{
+        console.log("You lost to computer how embarrasing")
     }
 
 }
