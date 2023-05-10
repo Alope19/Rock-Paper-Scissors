@@ -1,8 +1,4 @@
-
-let computerChoice = getComputerChoice()
-let playerChoice = prompt("Rock Paper or Scissors?").toLowerCase()
-
-
+game()
 
 
 
@@ -58,25 +54,33 @@ function playRound(playerSelection,computerSelection){
 }
 function game(){
     let playerScore = 0
-    let computerSCore = 0
-    for(let i = 0; i < 0; i++){
-        let result = playRound()
+    let computerScore = 0
+    for(let i = 0; i < 5; i++){
+        let computerChoice = getComputerChoice()
+        let playerChoice = prompt("Rock Paper or Scissors?").toLowerCase()        
+        let result = playRound(playerChoice,computerChoice)
 
         if (result == "You win! computer chose " + computerChoice){
             console.log(result)
-            playerscore++
+            playerScore++
+        }
+        else if(result == "You lose! computer chose " + computerChoice ){
+            console.log(result)
+            computerScore++
         }
         else{
             console.log(result)
-            computerSCore++
+            computerScore++
         }
 
     }
-    if(playerScore > computerSCore){
+    if(playerScore > computerScore){
         console.log("You won the game congrats")
     }
-    else{
+    else if(playerScore<computerScore){
         console.log("You lost to computer how embarrasing")
     }
-
+    else{
+        console.log("Its a Tie")
+    }
 }
