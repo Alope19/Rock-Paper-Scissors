@@ -1,11 +1,5 @@
 game()
 
-
-
-
-
-
-
 function getComputerChoice(){
     value = Math.floor(Math.random() * 3);
 
@@ -19,7 +13,7 @@ function getComputerChoice(){
         return "scissors"
     }
 }
-function playRound(playerSelection,computerSelection){
+/*function playRound(playerSelection,computerSelection){
     let winMessage = ("You win! computer chose " + computerSelection)
     let loseMessage = ("You lose! computer chose " + computerSelection)
 
@@ -52,6 +46,7 @@ function playRound(playerSelection,computerSelection){
     }
 
 }
+*/
 function game(){
     let playerScore = 0
     let computerScore = 0
