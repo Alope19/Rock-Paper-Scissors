@@ -1,19 +1,18 @@
-game()
+let playerScore = 0
+let computerScore = 0
+let rounds = 0
+startGame()
 
-function getComputerChoice(){
-    value = Math.floor(Math.random() * 3);
-
-    if (value === 1){
-        return("paper")
-    }
-    else if(value === 2){
-        return "rock"
-    }
-    else{
-        return "scissors"
-    }
+function startGame(){
+    const buttons = document.querySelectorAll('div.options')
+    buttons.forEach((button)=>{
+        button.addEventListener('click',()=>{
+            game(button.id)
+        })
+    })
 }
-/*function playRound(playerSelection,computerSelection){
+
+function playRound(playerSelection,computerSelection){
     let winMessage = ("You win! computer chose " + computerSelection)
     let loseMessage = ("You lose! computer chose " + computerSelection)
 
@@ -46,14 +45,12 @@ function getComputerChoice(){
     }
 
 }
-*/
-function game(){
-    let playerScore = 0
-    let computerScore = 0
-    for(let i = 0; i < 5; i++){
-        let computerChoice = getComputerChoice()
-        let playerChoice = prompt("Rock Paper or Scissors?").toLowerCase()        
+
+function game(playerChoice){
+    if(rounds < 5){
+        let computerChoice = getComputerChoice()      
         let result = playRound(playerChoice,computerChoice)
+        rounds++
 
         if (result == "You win! computer chose " + computerChoice){
             console.log(result)
@@ -69,13 +66,35 @@ function game(){
         }
 
     }
+    else if(rounds >= 5){
+        announceWinner()
+    }
+
+}
+
+function announceWinner(){
+
     if(playerScore > computerScore){
         console.log("You won the game congrats")
     }
     else if(playerScore<computerScore){
-        console.log("You lost to computer how embarrasing")
+        console.log("You lost")
     }
     else{
         console.log("Its a Tie")
+    }
+}
+
+function getComputerChoice(){
+    value = Math.floor(Math.random() * 3);
+
+    if (value === 1){
+        return("paper")
+    }
+    else if(value === 2){
+        return "rock"
+    }
+    else{
+        return "scissors"
     }
 }
