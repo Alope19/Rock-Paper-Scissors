@@ -1,8 +1,16 @@
+// Global variables
 let playerScore = 0
 let computerScore = 0
 let rounds = 0
+const text = document.querySelector(".results")
+const score = document.querySelector(".score")
+
+
+//Calls the function that starts the game
 startGame()
 
+
+//Function that checks if a user clicked on any of the icons and then runs the game
 function startGame(){
     const buttons = document.querySelectorAll('div.options')
     buttons.forEach((button)=>{
@@ -11,10 +19,10 @@ function startGame(){
         })
     })
 }
-
+//Function that plays a round in the game
 function playRound(playerSelection,computerSelection){
-    let winMessage = ("You win! computer chose " + computerSelection)
-    let loseMessage = ("You lose! computer chose " + computerSelection)
+    let winMessage = ("You won the round! computer chose " + computerSelection)
+    let loseMessage = ("You lost the round! computer chose " + computerSelection)
 
     if(computerSelection == playerSelection){
         return("Tie computer also chose " + computerSelection)
@@ -45,46 +53,42 @@ function playRound(playerSelection,computerSelection){
     }
 
 }
-
+// function that simulates a game being played
 function game(playerChoice){
-    if(rounds < 5){
+    if(playerScore < 5 && computerScore < 5 ){
         let computerChoice = getComputerChoice()      
         let result = playRound(playerChoice,computerChoice)
         rounds++
 
-        if (result == "You win! computer chose " + computerChoice){
-            console.log(result)
+        if (result == "You won the round! computer chose " + computerChoice){
             playerScore++
         }
-        else if(result == "You lose! computer chose " + computerChoice ){
-            console.log(result)
+        else if(result == "You lost the round! computer chose " + computerChoice ){
             computerScore++
         }
-        else{
-            console.log(result)
-            computerScore++
-        }
+        text.textContent = result
+        score.textContent = "You: " + playerScore + " Bot: " + computerScore
 
     }
-    else if(rounds >= 5){
+    if(playerScore === 5 || computerScore === 5) {
         announceWinner()
     }
 
 }
-
+//announce the winner of the game
 function announceWinner(){
 
     if(playerScore > computerScore){
-        console.log("You won the game congrats")
+        text.textContent = "You won the game congrats"
     }
     else if(playerScore<computerScore){
-        console.log("You lost")
+        text.textContent = "You lost the game"
     }
     else{
-        console.log("Its a Tie")
+        text.textContent = "Its a Tie"
     }
 }
-
+//gets the computer choice for the game
 function getComputerChoice(){
     value = Math.floor(Math.random() * 3);
 
